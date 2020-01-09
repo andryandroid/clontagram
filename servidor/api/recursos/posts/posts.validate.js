@@ -1,4 +1,4 @@
-const Joi = require('joi');
+const Joi = require('@hapi/joi');
 const fileType = require('file-type');
 const log = require('../../../utils/logger');
 
@@ -54,9 +54,7 @@ function validarImagen(req, res, next) {
 
   let fileInfo = fileType(req.body);
   if (!MIME_TYPE_VALIDOS.includes(fileInfo.mime)) {
-    const mensaje = `Disparidad entre content-type [${contentType}] y tipo de archivo [${
-      fileInfo.ext
-    }]. Request no será procesado`;
+    const mensaje = `Disparidad entre content-type [${contentType}] y tipo de archivo [${fileInfo.ext}]. Request no será procesado`;
     log.warn(`${mensaje}.`);
     res.status(400).send(mensaje);
     return;
