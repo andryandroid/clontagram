@@ -6,5 +6,5 @@ export default function Signup() {
         <Main center={true}>
             <h1>Hello!</h1>
         </Main>  
-    )
+    );
 }
