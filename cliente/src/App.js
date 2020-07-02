@@ -1,5 +1,12 @@
 import React from 'react';
+import Nav from './Componentes/Nav';
+import Signup from './Vistas/Signup';
 
 export default function App() {
-  return <h1>¡Bienvenido al curso!</h1>;
+  return (
+    <div className="ContenedorTemporal">
+      <Nav />
+      <Signup />
+    </div>
+  );
 }
