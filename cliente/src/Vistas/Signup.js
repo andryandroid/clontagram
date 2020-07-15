@@ -1,21 +1,34 @@
 import React, {useState} from 'react';
 import Main from '../Componentes/Main';
+import Axios from 'axios';
 import imagenSignup from '../imagenes/signup.png';
-import { useState } from 'react';
 
 export default function Signup() {
-
-    const usuario = {
+    
+    const [usuario, setUsuario] = useState({
         email: '',
         name: '',
         username: '',
         bio: '',
         password: ''
-    }
+    })
 
     function handleInputChange(e){
-        usuario[e.target.name] = e.target.value;
-        console.log(usuario);
+        setUsuario ({
+            ...usuario,
+                [e.target.name] : e.target.value
+        });
+    }
+
+    async function handleSubmit(e){
+        e.preventDefauld();
+
+        // try{
+        //     conts { data } = await Axios.post('api/usuarios/signup', usuario)
+        // }catch(error){
+        //     console.log(error);
+        // }
+
     }
 
     return(
@@ -27,13 +40,14 @@ export default function Signup() {
                     <p className="FormContainer__info">
                         Registrate para que veas el clon de Instagram
                     </p>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <input
                             type="email" 
                             name="email" 
                             placeholder="Email" 
                             className="Form__field"
                             onChange={handleInputChange} 
+                            value={usuario.email}
                             required>
                         </input>
                         <input 
@@ -43,7 +57,8 @@ export default function Signup() {
                             minLength="3" 
                             maxLength="100" 
                             className="Form__field"
-                            onChange={handleInputChange} 
+                            onChange={handleInputChange}
+                            value={usuario.name} 
                             required>
                         </input>
                         <input type="text" 
@@ -52,7 +67,8 @@ export default function Signup() {
                             minLength="3" 
                             maxLength="30" 
                             className="Form__field"
-                            onChange={handleInputChange} 
+                            onChange={handleInputChange}
+                            value={usuario.username} 
                             required>
                         </input>
                         <input 
@@ -62,7 +78,8 @@ export default function Signup() {
                             minLength="3" 
                             maxLength="150" 
                             className="Form__field"
-                            onChange={handleInputChange} 
+                            onChange={handleInputChange}
+                            value={usuario.bio} 
                             required>
                         </input>
                         <input 
@@ -70,7 +87,8 @@ export default function Signup() {
                             name="password" 
                             placeholder="Contraseña" 
                             className="Form__field"
-                            onChange={handleInputChange} 
+                            onChange={handleInputChange}
+                            value={usuario.password} 
                             required> 
                         </input>
                         
