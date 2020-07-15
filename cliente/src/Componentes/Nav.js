@@ -5,7 +5,7 @@ export default function Nav(){
         <nav className="Nav">
             <ul className="Nav__links">
                 <li>
-                    <a className="Nav__link" href="/">Clontagram</a>
+                    <a className="Nav__link" href="/">Clontagram en Mac</a>
                 </li>
             </ul>
         </nav>
