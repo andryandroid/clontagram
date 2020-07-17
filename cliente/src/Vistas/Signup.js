@@ -23,11 +23,12 @@ export default function Signup() {
     async function handleSubmit(e){
         e.preventDefauld();
 
-        // try{
-        //     conts { data } = await Axios.post('api/usuarios/signup', usuario)
-        // }catch(error){
-        //     console.log(error);
-        // }
+        try{
+            const { data } = await Axios.post('api/usuarios/signup', usuario);
+            console.log(data);
+        }catch(error){
+            console.log(error);
+        }
 
     }
 
