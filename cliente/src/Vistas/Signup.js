@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
-import Main from '../Componentes/Main';
 import Axios from 'axios';
+import Main from '../Componentes/Main';
 import imagenSignup from '../imagenes/signup.png';
 
 export default function Signup() {
-    
     const [usuario, setUsuario] = useState({
         email: '',
-        name: '',
+        nombre: '',
         username: '',
         bio: '',
         password: ''
@@ -16,15 +15,15 @@ export default function Signup() {
     function handleInputChange(e){
         setUsuario ({
             ...usuario,
-                [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         });
     }
 
-    async function handleSubmit(e){
-        e.preventDefauld();
+    async function handleSubmit(e) {
+        e.preventDefault();
 
         try{
-            const { data } = await Axios.post('api/usuarios/signup', usuario);
+            const { data } = await Axios.post('/api/usuarios/signup', usuario);
             console.log(data);
         }catch(error){
             console.log(error);
@@ -53,7 +52,7 @@ export default function Signup() {
                         </input>
                         <input 
                             type="text" 
-                            name="name" 
+                            name="nombre" 
                             placeholder="Nombre y Apellido" 
                             minLength="3" 
                             maxLength="100" 
