@@ -30,7 +30,7 @@ export default function Login() {
     return(
         <Main center>
             <div className="FormContainer">
-                <h1 className="Form__titulo">Clontagram</h1>
+                <h1 className="Form__titulo">Clontagram es muy lindo</h1>
                 <div>
                     <form onSubmit={handleSubmit}>
                         <input
