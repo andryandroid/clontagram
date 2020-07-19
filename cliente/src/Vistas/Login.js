@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Axios from 'axios';
 import Main from '../Componentes/Main';
 
-export default function Login() {
+export default function Login({login}) {
     const [emailYPassword, setEmailYPassword] = useState({
         email: '',
         password: ''
@@ -19,8 +19,7 @@ export default function Login() {
         e.preventDefault();
 
         try{
-            const { data } = await Axios.post('/api/usuarios/login', emailYPassword);
-            console.log(data);
+            login(emailYPassword.email, emailYPassword.password)
         }catch(error){
             console.log(error);
         }
@@ -30,7 +29,7 @@ export default function Login() {
     return(
         <Main center>
             <div className="FormContainer">
-                <h1 className="Form__titulo">Clontagram es muy lindo</h1>
+                <h1 className="Form__titulo">Clontagram</h1>
                 <div>
                     <form onSubmit={handleSubmit}>
                         <input
