@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Axios from 'axios';
 
-import {setToken} from './Helpers/auth-helpers';
+import {setToken, deleteToken} from './Helpers/auth-helpers';
 import Nav from './Componentes/Nav';
 
 import Signup from './Vistas/Signup';
@@ -19,10 +19,21 @@ export default function App() {
     setToken(data.token);
   }
 
+  async function signup(usuario){
+    const { data } = await Axios.post('/api/usuarios/signup', usuario);
+    setUsuario(data.usuario);
+    setToken(data.token);
+  }
+
+  function logout(){
+    setUsuario(null);
+    deleteToken();
+  }
+
   return (
     <>
       <Nav />
-      {/* <Signup /> */}
+      {/* <Signup signup={signup} /> */}
       <Login login={login} />
   <div>{JSON.stringify(usuario)}</div>
     </>

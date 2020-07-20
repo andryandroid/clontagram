@@ -3,7 +3,7 @@ import Axios from 'axios';
 import Main from '../Componentes/Main';
 import imagenSignup from '../imagenes/signup.png';
 
-export default function Signup() {
+export default function Signup({signup}) {
     const [usuario, setUsuario] = useState({
         email: '',
         nombre: '',
@@ -23,8 +23,7 @@ export default function Signup() {
         e.preventDefault();
 
         try{
-            const { data } = await Axios.post('/api/usuarios/signup', usuario);
-            console.log(data);
+            signup(usuario);
         }catch(error){
             console.log(error);
         }
