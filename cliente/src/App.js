@@ -3,9 +3,11 @@ import Axios from 'axios';
 
 import {setToken, deleteToken, getToken, initAxiosInterceptors} from './Helpers/auth-helpers';
 import Nav from './Componentes/Nav';
+import Loading from './Componentes/Loading';
 
 import Signup from './Vistas/Signup';
 import Login from './Vistas/Login';
+import Main from './Componentes/Main';
 
 initAxiosInterceptors();
 
@@ -49,6 +51,14 @@ export default function App() {
   function logout(){
     setUsuario(null);
     deleteToken();
+  }
+
+  if(cargandoUsuario){
+    return(
+      <Main center>
+        <Loading/>
+      </Main>
+    )
   }
 
   return (
