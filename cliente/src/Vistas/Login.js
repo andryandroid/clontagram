@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
 import Axios from 'axios';
 import Main from '../Componentes/Main';
 
@@ -53,7 +54,7 @@ export default function Login({login}) {
                         
                         <button className="Form__submit" type="submit">Login</button>
                         <p className="FormContainer__info">
-                            No tienes cuenta? <a href="#">Singup</a>
+                            No tienes cuenta? <Link to="/singup">Singup</Link>
                         </p>
                     </form>
                 </div>

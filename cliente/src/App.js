@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Axios from 'axios';
 
 import {setToken, deleteToken, getToken, initAxiosInterceptors} from './Helpers/auth-helpers';
@@ -62,11 +63,23 @@ export default function App() {
   }
 
   return (
-    <>
+    <Router>
       <Nav />
-      {/* <Signup signup={signup} /> */}
-      <Login login={login} />
-  <div>{JSON.stringify(usuario)}</div>
-    </>
+      <LogoutRoutes login={login} signup={signup} ></LogoutRoutes>
+      <div>{JSON.stringify(usuario)}</div>
+    </Router>
   );
+}
+
+function LoginRoutes(){
+
+}
+
+function LogoutRoutes({login, signup}){
+ return(
+   <Switch>
+     <Route path="/login/" render={(props) => <Login {... props} login={login}></Login>}></Route>
+     <Route render={(props) => <Signup {... props} signup={signup}></Signup>} default ></Route>
+   </Switch>
+ ) 
 }

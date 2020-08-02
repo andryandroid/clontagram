@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
 import Axios from 'axios';
 import Main from '../Componentes/Main';
 import imagenSignup from '../imagenes/signup.png';
@@ -93,7 +94,7 @@ export default function Signup({signup}) {
                         
                         <button className="Form__submit" type="submit">Sign Up</button>
                         <p className="FormContainer__info">
-                            ¿Ya tienes cuenta? <a href="#">Login</a>
+                            ¿Ya tienes cuenta? <Link to="/login">Login</Link>
                         </p>
                     </form>
                 </div> 
