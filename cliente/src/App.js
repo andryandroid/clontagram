@@ -5,6 +5,7 @@ import Axios from 'axios';
 import {setToken, deleteToken, getToken, initAxiosInterceptors} from './Helpers/auth-helpers';
 import Nav from './Componentes/Nav';
 import Loading from './Componentes/Loading';
+import Error from './Componentes/Error';
 
 import Signup from './Vistas/Signup';
 import Login from './Vistas/Login';
@@ -15,6 +16,7 @@ initAxiosInterceptors();
 export default function App() {
   const [usuario, setUsuario] = useState(null); 
   const [cargandoUsuario, setCargandoUsuario] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function cargarUsuario(){
@@ -54,6 +56,14 @@ export default function App() {
     deleteToken();
   }
 
+  function mostrarError(mensaje){
+    setError(mensaje);
+  }
+
+  function esconderError (){
+    setError(null);
+  }
+
   if(cargandoUsuario){
     return(
       <Main center>
@@ -65,7 +75,8 @@ export default function App() {
   return (
     <Router>
       <Nav />
-      {usuario ? <LoginRoutes/> : <LogoutRoutes login={login} signup={signup} ></LogoutRoutes>}
+      <Error mensaje={error} esconderError={esconderError}/>
+      {usuario ? <LoginRoutes/> : <LogoutRoutes login={login} signup={signup} mostrarError={mostrarError}/>}
     </Router>
   );
 }
@@ -78,11 +89,11 @@ function LoginRoutes(){
   );
 }
 
-function LogoutRoutes({login, signup}){
+function LogoutRoutes({login, signup, mostrarError}){
  return(
    <Switch>
-     <Route path="/login/" render={(props) => <Login {... props} login={login}></Login>}></Route>
-     <Route render={(props) => <Signup {... props} signup={signup}></Signup>} default ></Route>
+     <Route path="/login/" render={(props) => <Login {... props} login={login} mostrarError={mostrarError} />}  ></Route>
+     <Route render={(props) => <Signup {... props} signup={signup} mostrarError={mostrarError}/>  } default ></Route>
    </Switch>
  );
 }

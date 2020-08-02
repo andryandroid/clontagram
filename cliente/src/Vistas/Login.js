@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import Axios from 'axios';
 import Main from '../Componentes/Main';
 
-export default function Login({login}) {
+export default function Login({login, mostrarError}) {
     const [emailYPassword, setEmailYPassword] = useState({
         email: '',
         password: ''
@@ -20,8 +20,9 @@ export default function Login({login}) {
         e.preventDefault();
 
         try{
-            login(emailYPassword.email, emailYPassword.password)
+           await login(emailYPassword.email, emailYPassword.password)
         }catch(error){
+            mostrarError(error.response.data);
             console.log(error);
         }
 
@@ -40,7 +41,8 @@ export default function Login({login}) {
                             className="Form__field"
                             onChange={handleInputChange} 
                             value={emailYPassword.email}
-                            required>
+                            required
+                            >
                         </input>
                         <input 
                             type="password" 
@@ -49,7 +51,8 @@ export default function Login({login}) {
                             className="Form__field"
                             onChange={handleInputChange}
                             value={emailYPassword.password} 
-                            required> 
+                            required
+                            > 
                         </input>
                         
                         <button className="Form__submit" type="submit">Login</button>
