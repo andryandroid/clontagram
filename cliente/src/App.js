@@ -9,6 +9,7 @@ import Error from './Componentes/Error';
 
 import Signup from './Vistas/Signup';
 import Login from './Vistas/Login';
+import Upload from './Vistas/Upload';
 import Main from './Componentes/Main';
 
 initAxiosInterceptors();
@@ -74,16 +75,17 @@ export default function App() {
 
   return (
     <Router>
-      <Nav />
+      <Nav usuario ={usuario}/>
       <Error mensaje={error} esconderError={esconderError}/>
-      {usuario ? <LoginRoutes/> : <LogoutRoutes login={login} signup={signup} mostrarError={mostrarError}/>}
+      {usuario ? <LoginRoutes mostrarError={mostrarError}/> : <LogoutRoutes login={login} signup={signup} mostrarError={mostrarError}/>}
     </Router>
   );
 }
 
-function LoginRoutes(){
+function LoginRoutes(mostrarError){
   return(
     <Switch>
+      <Route path="/upload" render={(props) => <Upload {... props} mostrarError={mostrarError} />}  ></Route>
       <Route component={()=> <Main center><h1>Hola :D</h1></Main>} default></Route>
     </Switch>
   );
